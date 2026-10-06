@@ -7,6 +7,10 @@
 //학생 참고 사항: 이 헤더 주석을 자신의 솔루션에 대한 개괄적인 설명을 담은
 //주석으로 교체하십시오.
 
+// mem_in-it 함수는
+// 힙에 가용한 가상메모리를 큰 더블 워드로 정렬된 바이트의 배열로 모델한 것
+// mem_heap과 mem_brk 사이의 바이트들은 할당된 가상메모리를 나타낸다
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -29,18 +33,16 @@ team_t team = {
     ""
 };
 
- //싱글 워드(4) 또는 더블 워드(8) 정렬
+//싱글 워드(4) 또는 더블 워드(8) 정렬
 #define ALIGNMENT 8
 
- //ALIGNMENT의 가장 가까운 배수로 올림
+//ALIGNMENT의 가장 가까운 배수로 올림
 #define ALIGN(size) (((size) + (ALIGNMENT-1)) & ~0x7)
 
-
+// size_t의 크기를 8바이트 단위로 정렬
 #define SIZE_T_SIZE (ALIGN(sizeof(size_t)))
-
  
 // mm_init - malloc 패키지 초기화.
-
 int mm_init(void)
 {
     return 0;
@@ -49,7 +51,6 @@ int mm_init(void)
  
 //mm_malloc - brk 포인터를 증가시켜 블록 할당.
 //    항상 정렬(alignment)의 배수인 크기를 가진 블록을 할당합니다.
-
 void *mm_malloc(size_t size)
 {
     int newsize = ALIGN(size + SIZE_T_SIZE);
@@ -64,14 +65,12 @@ void *mm_malloc(size_t size)
 
 
 // mm_free - 블록을 해제해도 아무런 동작을 수행하지 않습니다.
-
 void mm_free(void *ptr)
 {
 }
 
 
 // mm_realloc - mm_malloc과 mm_free를 사용하여 간단하게 구현되었습니다.
-
 void *mm_realloc(void *ptr, size_t size)
 {
     void *oldptr = ptr;
