@@ -14,7 +14,7 @@
 #include "memlib.h"
 #include "config.h"
 
- private 변수
+// private 변수
 static char *mem_start_brk;   // 힙의 시작 주소
 static char *mem_brk;         // 힙의 마지막 바이트를 가리킴
 static char *mem_max_addr;    // 힙의 최대 한계
