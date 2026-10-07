@@ -20,31 +20,20 @@ static char *mem_brk;         // 힙의 마지막 바이트를 가리킴
 static char *mem_max_addr;    // 힙의 최대 한계
 
  
-// mem_init - 메모리 시스템 모델 초기화
-        // void mem_init(void)
-        // {
-        //     //가용 가상 메모리(VM)를 모델링하는 데 사용할 저장 공간 할당
-        //     if ((mem_start_brk = (char *)malloc(MAX_HEAP)) == NULL) {
-        // 	fprintf(stderr, "mem_init_vm: malloc error\n");
-        // 	exit(1);
-        //     }
-
-        //     mem_max_addr = mem_start_brk + MAX_HEAP;   //유효한 최대 힙 주소
-        //     mem_brk = mem_start_brk;                   //초기에는 힙이 비어 있음
-        // }
-
-        // MAX_HEAP : 힙의 최대 크기
-    void mem_init(void)
-    {
-        // 최대 힙 크기만큼 메모리를 할당하고 힙의 시작 주소를 저장
-        mem_start_brk = (char *)Malloc(MAX_HEAP);
-
-        // 현재 힙의 끝을 힙의 시작 위치로 설정
-        mem_brk = (char *)mem_start_brk;
-
-        // 힙에서 사용할 수 있는 최대 주소의 다음 위치를 저장
-        mem_max_addr = (char *)(mem_start_brk + MAX_HEAP);
+//mem_init - 메모리 시스템 모델 초기화
+void mem_init(void)
+{
+    //가용 가상 메모리(VM)를 모델링하는 데 사용할 저장 공간 할당
+    if ((mem_start_brk = (char *)malloc(MAX_HEAP)) == NULL) {
+        fprintf(stderr, "mem_init_vm: malloc error\n");
+        exit(1);
     }
+
+    mem_max_addr = mem_start_brk + MAX_HEAP;   //유효한 최대 힙 주소
+    mem_brk = mem_start_brk;                   //초기에는 힙이 비어 있음
+}
+
+// MAX_HEAP : 힙의 최대 크기
 
 
  
